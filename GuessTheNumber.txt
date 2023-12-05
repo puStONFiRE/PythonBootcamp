@@ -1,0 +1,55 @@
+from random import randint
+
+logo =\
+"""  ________                            ___________.__            _______               ___.                  
+ /  _____/ __ __   ____   ______ _____\__    ___/|  |__   ____  \      \  __ __  _____\_ |__   ___________  
+/   \  ___|  |  \_/ __ \ /  ___//  ___/ |    |   |  |  \_/ __ \ /   |   \|  |  \/     \| __ \_/ __ \_  __ \ 
+\    \_\  \  |  /\  ___/ \___ \ \___ \  |    |   |   Y  \  ___//    |    \  |  /  Y Y  \ \_\ \  ___/|  | \/ 
+ \______  /____/  \___  >____  >____  > |____|   |___|  /\___  >____|__  /____/|__|_|  /___  /\___  >__|    
+        \/            \/     \/     \/                \/     \/        \/            \/    \/     \/       
+"""
+
+print(logo)
+
+
+
+def choose_difficulty():
+    difficulty = input()
+    if difficulty == 'easy':
+        return 10
+    elif difficulty == 'hard':
+        return 5
+    else:
+        print("You have to choose between 'easy' and 'hard'.")
+
+
+def generate_number():
+    number = randint(1, 100)
+    return number
+
+
+def play_game():
+    print("Wellcome to the number guessing game.")
+    print("I'm thinking of a number between 1 and 100.")
+    print("Choose difficulty. Type 'easy' or 'hard':")
+    attempts = choose_difficulty()
+    is_game_over = False
+    number = generate_number()
+    while not is_game_over:
+        print(f"You have {attempts} remaining attempts to guess the number.")
+        print("Make guess: ")
+        guess = int(input())
+        if guess == number:
+            print(f"You got it! The answer was {number}")
+            is_game_over = True
+        elif guess > number:
+            print("Too high.")
+        elif guess < number:
+            print("Too low.")
+        attempts = attempts - 1;
+        if attempts == 0:
+            print("You lost!")
+            is_game_over = True
+
+
+play_game()
